@@ -1,0 +1,30 @@
+version: '3.4'
+
+services:
+  catalog.api:
+    image: ${DOCKER_REGISTRY-}catalogapi
+    build:
+      context: .
+      dockerfile: Catalog.api/Dockerfile
+  
+  catalogdb:
+    image: mongo
+
+  inventory.grpc:
+    image: ${DOCKER_REGISTRY-}inventorygrpc
+    build:
+      context: .
+      dockerfile: Inventory.grpc/Dockerfile
+
+  basket.api:
+    image: ${DOCKER_REGISTRY-}basketapi
+    build:
+      context: .
+      dockerfile: Basket.api/Dockerfile
+
+  basketdb:
+    image: redis:alpine
+
+volumes:
+  mongo_data:
+
