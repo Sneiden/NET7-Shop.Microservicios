@@ -1,7 +1,7 @@
 
 using Inventory.grpc.Services;
 
-namespace Inventory.grpc
+namespace Inventory.grpc.Services
 {
     public class Program
     {

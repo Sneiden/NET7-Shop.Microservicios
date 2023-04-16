@@ -1,14 +1,8 @@
-﻿using Ordering.Domain.Common;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Ordering.Domain.Entities
+﻿namespace Ordering.Application.Features.Orders.Queries.GetOrderList
 {
-    public class Order : EntityBase, IMultiTenant
+    internal class OrdersViewModel
     {
+        public int Id { get; set; }
         public string UserName { get; set; } = null!;
         public decimal TotalPrice { get; set; }
 
@@ -17,6 +11,5 @@ namespace Ordering.Domain.Entities
         public string LastName { get; set; } = null!;
         public string Address { get; set; } = null!;
         public int PaymentMethod { get; set; }
-        public Guid TenantId { get; set; }
     }
 }
