@@ -10,9 +10,9 @@ namespace Basket.api.Controllers
     [Route("api/v1/[controller]")]
     public class BasketController : ControllerBase
     {
-        public IBasketRepository basketRepository;
+        private readonly IBasketRepository basketRepository;
         private readonly ExistanceService.ExistanceServiceClient existanceService;
-
+         
         public BasketController(IBasketRepository basketRepository, ExistanceService.ExistanceServiceClient existanceService)
         {
             this.basketRepository = basketRepository;
@@ -40,9 +40,7 @@ namespace Basket.api.Controllers
             foreach (var item in shoppingCart.Items)
             {
                 var existance = await existanceService.CheckExistanceAsync(new ProductRequest { Id = item.ProductId });
-
                 item.Quantity = item.Quantity > existance.ProductQty ? existance.ProductQty : item.Quantity;
-
             }
 
             await basketRepository.UpdateBasket(shoppingCart);
